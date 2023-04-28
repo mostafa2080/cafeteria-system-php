@@ -1,6 +1,8 @@
-
+<?php
+include 'app/Views/Layout-top.php';
+?>
 <div class="container d-flex justify-center p-5">
-    <form method="POST" action="">
+    <form method="POST" action="/users/store">
         <div class="row">
             <div class="form-group col-6">
                 <label for="userName">User Name</label>
@@ -24,3 +26,6 @@
         </div>
     </form>
 </div>
+<?php
+include 'app/Views/Layout-bot.php';
+?>
