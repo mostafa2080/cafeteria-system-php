@@ -6,14 +6,16 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-var_dump($_SERVER['REQUEST_URI']);
 
 require_once 'app/Controllers/UserController.php';
 use App\Controllers\UserController;
+$path = explode('.', $_SERVER['REQUEST_URI']);
 
-$user = new UserController();
-$user->index();
-var_dump($user->index());
+// User routes
+
+UserController::create();
+
+
 ?>
 <?php
  include 'app/Views/Layout-bot.php';
