@@ -57,5 +57,13 @@ class UserController
         }
     }
 
+    public static function ResetPassword($id)
+    {
+        $user = User::updateSingle($id,'password','123456');
+        if ($user >= 0 ){
+            header('Location: /users');
+        }
+    }
+
 
 }
