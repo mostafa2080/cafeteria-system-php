@@ -7,8 +7,10 @@ error_reporting(E_ALL);
 
 require_once 'app/Controllers/UserController.php';
 require_once 'app/Controllers/CategoryController.php';
+require_once 'app/Controllers/CheckController.php';
 use App\Controllers\UserController;
 use App\Controllers\CategoryController;
+use App\Controllers\CheckController;
 $path = $_SERVER['PATH_INFO'];
 // get queryString from url
 $queryString = explode('=',$_SERVER['QUERY_STRING']);
@@ -73,12 +75,17 @@ switch ($path) {
                 if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
                     CategoryController::destroy($queryString[1]);
                 }
-                break;
+            break;
             case '/categories/store':
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     CategoryController::store();
                 }
-                break;
+            break;
+            case '/checks':
+                if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                    CheckController::index();
+                }
+            break;
             default:
                 echo '404 Page not Found';
             break;
