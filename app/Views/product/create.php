@@ -36,6 +36,13 @@ include 'app/Views/Layout-top.php';
     <button type="submit" class="btn btn-primary">Create Product</button>
 </form>
 
+
+<style>
+    form {
+        margin-left: 15px;
+    }
+</style>
+
 <?php
 include 'app/Views/Layout-bot.php';
 ?>

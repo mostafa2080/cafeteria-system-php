@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 require_once 'app/Controllers/ProductController.php';
 use App\Controllers\ProductController;
 $path = $_SERVER['PATH_INFO'];
-$queryString = explode('=', $_SERVER['QUERY_STRING']);
+$queryString = isset($_SERVER['QUERY_STRING']) ? explode('=', $_SERVER['QUERY_STRING']) : [];
 //var_dump($queryString);
 
 switch ($path) {
@@ -17,7 +17,7 @@ switch ($path) {
             ProductController::store();
         }
         break;
-    case '/products/create':
+    case '/product/create':
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             ProductController::create();
         }
@@ -32,12 +32,12 @@ switch ($path) {
             ProductController::edit($queryString[1]);
         }
         break;
-    case '/products/delete':
+    case '/product/delete':
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
             ProductController::destroy($queryString[1]);
         }
         break;
-    case '/products/store':
+    case '/product/store':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ProductController::store();
         }

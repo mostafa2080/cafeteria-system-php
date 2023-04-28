@@ -16,6 +16,7 @@ include 'app/Views/Layout-top.php';
 		<?php if ($product): ?>
 			<h3><?= $product->name ?></h3>
 			<p><strong>Price:</strong> $<?= $product->price ?></p>
+			<p><strong>Image:</strong> <?= $product->image ?></p>
 			<p><strong>Category:</strong> <?= $product->categoryID ?></p>
 		<?php else: ?>
 			<p>Product not found</p>
