@@ -6,7 +6,9 @@ error_reporting(E_ALL);
 
 
 require_once 'app/Controllers/UserController.php';
+require_once 'app/Controllers/CategoryController.php';
 use App\Controllers\UserController;
+use App\Controllers\CategoryController;
 $path = $_SERVER['PATH_INFO'];
 // get queryString from url
 $queryString = explode('=',$_SERVER['QUERY_STRING']);
@@ -55,9 +57,31 @@ switch ($path) {
             UserController::ResetPassword($queryString[1]);
         }
         break;
-    default:
-        echo '404 Page not Found';
+        //categories routes
+        case '/categories':
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                // var_dump($_SERVER);
+                CategoryController::index();
+            }
         break;
+        case '/categories/create':
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                CategoryController::create();
+            }
+            break;
+            case '/categories/delete/':
+                if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
+                    CategoryController::destroy($queryString[1]);
+                }
+                break;
+            case '/categories/store':
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    CategoryController::store();
+                }
+                break;
+            default:
+                echo '404 Page not Found';
+            break;
 }
 
 
