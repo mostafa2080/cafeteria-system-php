@@ -1,4 +1,6 @@
-
+<?php
+include 'app/Views/Layout-top.php';
+?>
 <div class="container p-4">
     <table id="example1" class="table table-bordered table-striped">
         <thead>
@@ -42,3 +44,6 @@
 <a href="#" class="btn btn-primary d-flex justify-content-center align-items-center rounded-circle shadow-lg" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;width: 50px;height: 50px">
     <i class="fas fa-plus"></i>
 </a>
+<?php
+include 'app/Views/Layout-bot.php';
+?>

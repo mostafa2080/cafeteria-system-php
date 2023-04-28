@@ -1,6 +1,4 @@
-<?php
- include 'app/Views/Layout-top.php';
-?>
+
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -41,6 +39,11 @@ switch ($path) {
             UserController::destroy($path[2]);
         }
         break;
+    case '/users/store':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            UserController::store();
+        }
+        break;
     default:
         echo '404';
         break;
@@ -49,7 +52,4 @@ switch ($path) {
 
 
 
-?>
-<?php
- include 'app/Views/Layout-bot.php';
 ?>
