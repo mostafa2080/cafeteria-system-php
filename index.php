@@ -45,7 +45,7 @@ switch ($path) {
         }
         break;
     default:
-        echo '404';
+        echo '404 Page not Found';
         break;
 }
 
