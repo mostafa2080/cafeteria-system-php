@@ -1,55 +1,54 @@
-
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
-require_once 'app/Controllers/UserController.php';
-use App\Controllers\UserController;
+require_once 'app/Controllers/ProductController.php';
+use App\Controllers\ProductController;
 $path = $_SERVER['PATH_INFO'];
+$queryString = explode('=', $_SERVER['QUERY_STRING']);
+//var_dump($queryString);
 
 switch ($path) {
-    case '/users':
+    case '/products':
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            UserController::index();
+            ProductController::index();
         } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            UserController::store();
+            ProductController::store();
         }
         break;
-    case '/users/create':
+    case '/products/create':
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            UserController::create();
+            ProductController::create();
         }
         break;
-    case '/users/show':
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            UserController::show($path[2]);
+    case '/product/show':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
+            ProductController::show($queryString[1]);
         }
         break;
-    case '/users/edit':
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            UserController::edit($path[2]);
-        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            UserController::update();
+    case '/product/edit':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
+            ProductController::edit($queryString[1]);
         }
         break;
-    case '/users/delete':
+    case '/products/delete':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
+            ProductController::destroy($queryString[1]);
+        }
+        break;
+    case '/products/store':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            UserController::destroy($path[2]);
+            ProductController::store();
         }
         break;
-    case '/users/store':
+    case '/product/update':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            UserController::store();
+            ProductController::update();
         }
         break;
     default:
-        echo '404 Page not Found';
+        echo '404';
         break;
 }
-
-
-
-
 ?>
