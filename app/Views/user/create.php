@@ -23,6 +23,7 @@ include 'app/Views/Layout-top.php';
         </div>
         <div class="raw d-flex justify-content-center">
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/users" class="btn btn-danger ml-3">Cancel</a>
         </div>
     </form>
 </div>

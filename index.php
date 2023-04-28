@@ -8,6 +8,9 @@ error_reporting(E_ALL);
 require_once 'app/Controllers/UserController.php';
 use App\Controllers\UserController;
 $path = $_SERVER['PATH_INFO'];
+// get queryString from url
+$queryString = explode('=',$_SERVER['QUERY_STRING']);
+//var_dump($queryString);
 
 switch ($path) {
     case '/users':
@@ -27,21 +30,29 @@ switch ($path) {
             UserController::show($path[2]);
         }
         break;
-    case '/users/edit':
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            UserController::edit($path[2]);
-        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            UserController::update();
+    case '/users/edit/':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
+            UserController::edit($queryString[1]);
         }
         break;
-    case '/users/delete':
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            UserController::destroy($path[2]);
+    case '/users/delete/':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
+            UserController::destroy($queryString[1]);
         }
         break;
     case '/users/store':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             UserController::store();
+        }
+        break;
+    case '/users/update':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            UserController::update();
+        }
+        break;
+    case '/users/reset/':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
+            UserController::ResetPassword($queryString[1]);
         }
         break;
     default:
