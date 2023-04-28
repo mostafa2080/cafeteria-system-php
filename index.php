@@ -9,11 +9,44 @@ error_reporting(E_ALL);
 
 require_once 'app/Controllers/UserController.php';
 use App\Controllers\UserController;
-$path = explode('.', $_SERVER['REQUEST_URI']);
+$path = $_SERVER['PATH_INFO'];
 
-// User routes
+switch ($path) {
+    case '/users':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            UserController::index();
+        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            UserController::store();
+        }
+        break;
+    case '/users/create':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            UserController::create();
+        }
+        break;
+    case '/users/show':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            UserController::show($path[2]);
+        }
+        break;
+    case '/users/edit':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            UserController::edit($path[2]);
+        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            UserController::update();
+        }
+        break;
+    case '/users/delete':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            UserController::destroy($path[2]);
+        }
+        break;
+    default:
+        echo '404';
+        break;
+}
 
-UserController::create();
+
 
 
 ?>
