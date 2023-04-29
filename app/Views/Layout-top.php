@@ -100,7 +100,7 @@
           <img src="/public/assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?php if (isset($_SESSION['admin'])){echo 'Admin';}else{echo 'Guest';}?></a>
         </div>
       </div>
 
@@ -119,8 +119,27 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+          <?php if (isset($_SESSION['admin'])){?>
+            <li class="nav-item">
+                <a href="/admin/logout" class="nav-link">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Logout
+                </p>
+                </a>
+            </li>
+          <?php }?>
+            <?php if (!isset($_SESSION['admin'])){?>
+                <li class="nav-item">
+                    <a href="/admin/login" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Login
+                    </p>
+                    </a>
+                </li>
+            <?php }?>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

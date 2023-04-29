@@ -1,5 +1,7 @@
 <?php
+session_start();
 include 'app/Views/Layout-top.php';
+var_dump($_SESSION['admin']);
 ?>
 <div class="container p-4">
     <table id="example1" class="table table-bordered table-striped">
@@ -16,20 +18,20 @@ include 'app/Views/Layout-top.php';
         <?php foreach ($users as $user): ?>
             <tr>
                 <td><?= $user->id ?></td>
-                <!--<td><img src="<?= $user->image ?>" alt="" width="50px" height="50px"></td>-->
-                <td><img src="public/assets/img/avatar.png" alt="" width="50px" height="50px"></td>
+                <td><img src="/public/images/<?= $user->image ?>" alt="" width="50px" height="50px"></td>
+                <!--<td><img src="public/assets/img/avatar.png" alt="" width="50px" height="50px"></td>-->
                 <td><?= $user->name ?></td>
                 <td><?= $user->email ?></td>
                 <td class="d-flex justify-content-around">
-                    <a href="#" class="btn btn-outline-info">
+                    <a href="/users/reset/?id=<?php echo $user->id ?>" title="Reset Password" class="btn btn-outline-info">
                         <i class="fas fa-info"></i>
                     </a>
-                    <a href="#" class="btn btn-outline-success">
+                    <a href="/users/edit/?id=<?php echo $user->id ?>" title="Edit" class="btn btn-outline-success">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <button class="btn btn-outline-danger w-25" data-toggle="modal" data-target="#deleteModal{{$order['id']}}">
+                    <a href="/users/delete/?id=<?php echo $user->id ?>" title="Delete" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i>
-                    </button>
+                    </a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -41,7 +43,7 @@ include 'app/Views/Layout-top.php';
     </table>
 
 </div>
-<a href="#" class="btn btn-primary d-flex justify-content-center align-items-center rounded-circle shadow-lg" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;width: 50px;height: 50px">
+<a href="/users/create" class="btn btn-primary d-flex justify-content-center align-items-center rounded-circle shadow-lg" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000;width: 50px;height: 50px">
     <i class="fas fa-plus"></i>
 </a>
 <?php
