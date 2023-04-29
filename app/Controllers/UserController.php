@@ -3,7 +3,6 @@
 namespace App\Controllers;
 require_once 'app/Models/User.php';
 use App\Models\User;
-session_start();
 
 class UserController
 {

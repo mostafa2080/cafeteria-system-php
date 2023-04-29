@@ -1,7 +1,5 @@
 <?php
-session_start();
 include 'app/Views/Layout-top.php';
-var_dump($_SESSION['admin']);
 ?>
 <div class="container p-4">
     <table id="example1" class="table table-bordered table-striped">

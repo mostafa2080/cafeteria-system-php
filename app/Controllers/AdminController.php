@@ -15,7 +15,7 @@ class AdminController
         if ($data['email'] == 'admin@admin.com' && $data['password'] == '123456') {
             $_SESSION['admin'] = true;
 
-            header('Location: /users');
+            header('Location: /users'); //home 
         } else {
             header('Location: /login');
         }
