@@ -9,7 +9,6 @@ class ProductController
     public static function index()
     {
         $products = Product::all();
-        var_dump($products);
 
         require_once ('app/Views/product/index.php');
 

@@ -3,46 +3,38 @@
 <?php
 include 'app/Views/Layout-top.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Edit Product</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<body>
 	<div class="container">
 		<h1>Edit Product</h1>
 		<form method="POST" action="/product/update">
-			<input type="hidden" name="id" value="<?php echo $product['id'] ?>">
+			<input type="hidden" name="id" value="<?php echo $product->id ?>">
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" class="form-control" name="name" value="<?php echo $product['name'] ?>">
+				<input type="text" class="form-control" name="name" value="<?php echo $product->name?>">
 			</div>
 			<div class="form-group">
 				<label for="image">Image URL</label>
-				<input type="text" class="form-control" name="image" value="<?php echo $product['image'] ?>">
+				<input type="text" class="form-control" name="image" value="<?php echo $product->image ?>">
 			</div>
 			<div class="form-group">
 				<label for="price">Price</label>
-				<input type="number" class="form-control" name="price" value="<?php echo $product['price'] ?>">
+				<input type="number" class="form-control" name="price" value="<?php echo $product->price ?>">
 			</div>
 			<div class="form-group">
 				<label for="status">Status</label>
 				<select class="form-control" name="status">
-					<option value="available" <?php if ($product['status'] == 'available') echo 'selected' ?>>Available</option>
-					<option value="unavailable" <?php if ($product['status'] == 'unavailable') echo 'selected' ?>>Unavailable</option>
+					<option value="available" <?php if ($product->status == 'available') echo 'selected' ?>>Available</option>
+					<option value="unavailable" <?php if ($product->status == 'unavailable') echo 'selected' ?>>Unavailable</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="categoryID">Category ID</label>
-				<input type="number" class="form-control" name="categoryID" value="<?php echo $product['categoryID'] ?>">
+				<input type="number" class="form-control" name="categoryID" value="<?php echo $product->categoryID ?>">
 			</div>
 			<button type="submit" class="btn btn-primary">Update</button>
-			<a href="index.php" class="btn btn-secondary">Cancel</a>
+			<a href="/products" class="btn btn-secondary">Cancel</a>
 		</form>
 	</div>
-</body>
-</html>
+
 <?php
-include 'app/Views/Layout-bot.php';
+include 'app/Views/Layout-bot.php';	
 ?>

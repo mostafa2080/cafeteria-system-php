@@ -3,8 +3,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+require_once 'app/Controllers/UserController.php';
 require_once 'app/Controllers/ProductController.php';
 use App\Controllers\ProductController;
+use App\Controllers\UserController;
+
 $path = $_SERVER['PATH_INFO'];
 $queryString = isset($_SERVER['QUERY_STRING']) ? explode('=', $_SERVER['QUERY_STRING']) : [];
 //var_dump($queryString);
@@ -51,4 +54,5 @@ switch ($path) {
         echo '404';
         break;
 }
-?>
+// ?>
+
