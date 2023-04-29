@@ -12,6 +12,9 @@ class ProductController
 {
     public static function index()
     {
+        if (!isset($_SESSION['admin'])){
+            header('Location: /admin/login');
+        }
         $products = Product::all();
 
         require_once('app/Views/product/index.php');
@@ -19,11 +22,17 @@ class ProductController
 
     public static function create()
     {
+        if (!isset($_SESSION['admin'])){
+            header('Location: /admin/login');
+        }
         require_once('app/Views/product/create.php');
     }
 
     public static function show($id)
     {
+        if (!isset($_SESSION['admin'])){
+            header('Location: /admin/login');
+        }
         $product = Product::find($id);
         $category = Category::find($product->categoryID) ; 
         require_once('app/Views/product/show.php');
@@ -31,6 +40,9 @@ class ProductController
 
     public static function store()
     {
+        if (!isset($_SESSION['admin'])){
+            header('Location: /admin/login');
+        }
         $data = $_POST;
         $errors = []; // array to store validation errors
     
@@ -102,12 +114,18 @@ class ProductController
 
     public static function edit($id)
     {
+        if (!isset($_SESSION['admin'])){
+            header('Location: /admin/login');
+        }
         $product = Product::find($id);
         require_once('app/Views/product/edit.php');
     }
 
     public static function update()
     {
+        if (!isset($_SESSION['admin'])){
+            header('Location: /admin/login');
+        }
         $data = $_POST;
     
         // Validate form fields
@@ -178,6 +196,9 @@ class ProductController
 
     public static function destroy($id)
 {
+    if (!isset($_SESSION['admin'])){
+        header('Location: /admin/login');
+    }
     $product = Product::find($id);
     if($product) {
         Product::delete($id);
