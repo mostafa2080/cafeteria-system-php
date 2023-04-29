@@ -12,7 +12,6 @@ class CategoryController
             header('Location: /admin/login');
         }
         $categories = Category::all();
-        var_dump($categories);
         require_once ('app/Views/category/index.php');
 
     }
