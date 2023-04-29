@@ -1,15 +1,17 @@
 //Products 
 
+DROP TABLE IF EXISTS products;
+
 CREATE TABLE products (
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT(11) NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
     image VARCHAR(255) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    status TINYINT NOT NULL,
-    categoryID INT NOT NULL,
-    PRIMARY KEY (id)
-);
-
+    status INT(1) NOT NULL DEFAULT 0,
+    categoryID INT(11) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (categoryID) REFERENCES categories(id) ON DELETE CASCADE
+)
 
 INSERT INTO products (name, image, price, status, categoryID)
 VALUES
