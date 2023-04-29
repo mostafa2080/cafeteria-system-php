@@ -172,11 +172,29 @@ class ProductController
     }
     
 
+    // public static function destroy($id)
+    // {
+    //     $product = Product::delete($id);
+    //     if ($product) {
+    //         header('Location: /products');
+    //     }
+    // }
     public static function destroy($id)
-    {
-        $product = Product::delete($id);
-        if ($product) {
-            header('Location: /products');
-        }
+{
+    $product = Product::find($id);
+    if($product) {
+        Product::delete($id);
+        unlink('public/images/' . $product->image);
+        header('Location: /products');
+    }
+    else {
+        // product not found
+        echo "Product not found";
     }
 }
+
+
+
+
+}
+

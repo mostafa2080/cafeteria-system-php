@@ -14,11 +14,11 @@ include 'app/Views/Layout-top.php';
 		<?php if ($product): ?>
 			<h3><?= $product->name ?></h3>
 			<p><strong>Price:</strong> $<?= $product->price ?></p>
-			<img src="public/images/<?= $product->image ?>" alt="<?= $product->name ?>"/>
+			<img src="/public/images/<?= $product->image ?>" alt="<?= $product->name ?>" width="200" height="200"/>
 			<p><strong>Category:</strong> <?= $product->categoryID ?></p>
 		<?php else: ?>
 			<p>Product not found</p>
-		<?php endif; ?>
+		<?php endif; ?>	
 		<a href="/products" class="btn btn-primary">Back to Products</a>
 	</div>
 
