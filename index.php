@@ -6,7 +6,9 @@ error_reporting(E_ALL);
 
 
 require_once 'app/Controllers/UserController.php';
+require_once 'app/Controllers/AdminController.php';
 use App\Controllers\UserController;
+use App\Controllers\AdminController;
 $path = $_SERVER['PATH_INFO'];
 // get queryString from url
 $queryString = explode('=',$_SERVER['QUERY_STRING']);
@@ -53,6 +55,21 @@ switch ($path) {
     case '/users/reset/':
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && $queryString[1] != null) {
             UserController::ResetPassword($queryString[1]);
+        }
+        break;
+    case '/admin/login':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            AdminController::login();
+        }
+        break;
+    case '/admin/check':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            AdminController::check();
+        }
+        break;
+    case '/admin/logout':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            AdminController::logout();
         }
         break;
     default:

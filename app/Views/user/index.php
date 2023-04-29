@@ -1,5 +1,7 @@
 <?php
+session_start();
 include 'app/Views/Layout-top.php';
+var_dump($_SESSION['admin']);
 ?>
 <div class="container p-4">
     <table id="example1" class="table table-bordered table-striped">
@@ -16,8 +18,8 @@ include 'app/Views/Layout-top.php';
         <?php foreach ($users as $user): ?>
             <tr>
                 <td><?= $user->id ?></td>
-                <!--<td><img src="<?= $user->image ?>" alt="" width="50px" height="50px"></td>-->
-                <td><img src="public/assets/img/avatar.png" alt="" width="50px" height="50px"></td>
+                <td><img src="/public/images/<?= $user->image ?>" alt="" width="50px" height="50px"></td>
+                <!--<td><img src="public/assets/img/avatar.png" alt="" width="50px" height="50px"></td>-->
                 <td><?= $user->name ?></td>
                 <td><?= $user->email ?></td>
                 <td class="d-flex justify-content-around">
