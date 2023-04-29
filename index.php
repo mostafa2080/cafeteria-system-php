@@ -6,11 +6,13 @@ error_reporting(E_ALL);
 
 
 require_once 'app/Controllers/UserController.php';
+require_once 'app/Controllers/AdminController.php';
 require_once 'app/Controllers/CategoryController.php';
 require_once 'app/Controllers/CheckController.php';
 use App\Controllers\UserController;
 use App\Controllers\CategoryController;
 use App\Controllers\CheckController;
+use App\Controllers\AdminController;
 $path = $_SERVER['PATH_INFO'];
 // get queryString from url
 $queryString = explode('=',$_SERVER['QUERY_STRING']);
@@ -59,12 +61,28 @@ switch ($path) {
             UserController::ResetPassword($queryString[1]);
         }
         break;
+    case '/admin/login':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            AdminController::login();
+        }
+        break;
+    case '/admin/check':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            AdminController::check();
+        }
+        break;
+    case '/admin/logout':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            AdminController::logout();
+        }
+        break;
         //categories routes
         case '/categories':
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 // var_dump($_SERVER);
                 CategoryController::index();
             }
+
         break;
         case '/categories/create':
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
