@@ -21,7 +21,7 @@ include 'app/Views/Layout-top.php';
             <?php foreach ($products as $product) : ?>
                 <tr>
                     <td><?php echo $product->name; ?></td>
-                    <td><?php echo $product->image; ?></td>
+                    <td style="width: 100px; height: 100px; overflow: hidden;"><img src="/public/images/<?php echo $product->image; ?>" alt="<?php echo $product->name; ?>" style="width: 50px; height: 50px;"></td>
                     <td>$<?php echo $product->price; ?></td>
                     <td>
                         <?php if ($product->status) : ?>
