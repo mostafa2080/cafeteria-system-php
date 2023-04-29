@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 require_once 'app/Models/Product.php';
+require_once 'app/Models/Category.php';
 
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController
 {
@@ -23,6 +25,7 @@ class ProductController
     public static function show($id)
     {
         $product = Product::find($id);
+        $category = Category::find($product->categoryID) ; 
         require_once('app/Views/product/show.php');
     }
 
@@ -172,13 +175,7 @@ class ProductController
     }
     
 
-    // public static function destroy($id)
-    // {
-    //     $product = Product::delete($id);
-    //     if ($product) {
-    //         header('Location: /products');
-    //     }
-    // }
+
     public static function destroy($id)
 {
     $product = Product::find($id);
