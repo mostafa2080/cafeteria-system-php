@@ -31,3 +31,26 @@ CREATE TABLE users (
   image VARCHAR(255)
 );
 
+
+INSERT INTO users (name, email, password, image) VALUES
+  ('John Doe', 'john.doe@example.com', 'password123', 'john.jpg'),
+  ('Jane Smith', 'jane.smith@example.com', 'secret123', 'jane.png'),
+  ('Bob Johnson', 'bob.johnson@example.com', '12345678', 'bob.jpg'),
+  ('Samantha Lee', 'samantha.lee@example.com', 'letmein', 'samantha.png'),
+  ('Mike Brown', 'mike.brown@example.com', 'password', 'mike.jpg');
+
+
+
+
+
+//category
+
+CREATE TABLE `categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) 
+
+INSERT INTO categories (name) VALUES 
+  ('Hot Drinks'),
+  ('Cold Drinks');
