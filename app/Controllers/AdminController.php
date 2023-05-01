@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controllers;
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 class AdminController
 {
     public static function login()

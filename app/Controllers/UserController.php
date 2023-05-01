@@ -151,15 +151,16 @@ class UserController
 
     public static function login()
     {
-        require_once ('app/Views/user/login.php');
+        require_once ('app/Views/CafeteriaUI/login.php');
     }
 
     public static function loginPost()
     {
         $data = $_POST;
-        $user = User::findByEmail($data['email']);
+        $user = User::where('email' , $data['email']);
+        var_dump($data);
         if ($user){
-            if (password_verify($data['password'], $user->password)){
+            if (password_verify($data['password'], $user[0]->password)){
                 $_SESSION['user'] = $user;
                 header('Location: /');
             }
@@ -174,7 +175,39 @@ class UserController
 
     public static function register()
     {
-        require_once ('app/Views/user/register.php');
+        require_once ('app/Views/CafeteriaUI/register.php');
+    }
+
+    public static function registerPost()
+    {
+        $data = $_POST;
+        // validation
+        if ($data['name'] == '' || $data['email'] == '' || $data['password'] == ''){
+            $_SESSION['create_error'] = 'All fields are required';
+            header('Location: /users/register');
+        }else{
+            unset($_SESSION['create_error']);
+        }
+        // image validation
+        $allowedExt = ['png', 'jpg', 'jpeg', 'gif'];
+        $imageExt = explode('/', $_FILES['image']['type'])[1];
+        if (!in_array($imageExt, $allowedExt)){
+            die('image not allowed');
+        }
+        // save image
+        $image = $_FILES['image'];
+        var_dump($image);
+        $imageName = time() . '-' . $image['name'];
+        $imageTmp = $image['tmp_name'];
+        move_uploaded_file($imageTmp, 'public/images/' . $imageName);
+        $data['image'] = $imageName;
+        // hash password
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        // create user
+        $user = User::create($data);
+        if ($user){
+            header('Location: /users/login');
+        }
     }
 
 

@@ -157,15 +157,44 @@ switch ($path) {
                     ProductController::order();
                 }
                 break;
-                case '':
-                    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-                        ProductController::home();
-                    }
-                    break;
+    case '/users/login':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            UserController::login();
+        }
+        break;
+
+    case '/users/register':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            UserController::register();
+        }
+        break;
+
+    case '/users/add':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            UserController::registerPost();
+        }
+        break;
+
+    case '/users/logout':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            UserController::logout();
+        }
+        break;
+
+    case '':
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            ProductController::home();
+        }
+        break;
+
+
+    case '/users/check':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            UserController::loginPost();
+        }
+        break;
     default:
         echo '404 Page not Found';
     break;
 }
 // ?>
-
-x`x`
