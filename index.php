@@ -147,6 +147,21 @@ switch ($path) {
             ProductController::update();
         }
         break;
+        case '/home':
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                ProductController::home();
+            }
+            break;
+            case '/order':
+                if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                    ProductController::order();
+                }
+                break;
+                case '':
+                    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                        ProductController::home();
+                    }
+                    break;
     default:
         echo '404 Page not Found';
     break;

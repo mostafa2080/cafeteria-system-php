@@ -19,6 +19,20 @@ class ProductController
 
         require_once('app/Views/product/index.php');
     }
+    public static function home()
+    {
+       
+        $products = Product::all();
+
+        require_once('app/Views/product/home.php');
+    }
+    public static function order()
+    {
+       
+        $products = Product::all();
+
+        require_once('app/Views/product/order.php');
+    }
 
     public static function create()
     {
