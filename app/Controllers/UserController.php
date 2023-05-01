@@ -1,6 +1,11 @@
 <?php
 
 namespace App\Controllers;
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once 'app/Models/User.php';
 use App\Models\User;
 
@@ -26,7 +31,7 @@ class UserController
 
     public static function show($id)
     {
-        if (!isset($_SESSION['admin'])){
+        if (!isset($_SESSION['admin']) || !isset($_SESSION['user'])){
             header('Location: /admin/login');
         }
         $user = User::find($id);
@@ -35,7 +40,7 @@ class UserController
 
     public static function store()
     {
-        if (!isset($_SESSION['admin'])){
+        if (!isset($_SESSION['admin']) || !isset($_SESSION['user'])){
             header('Location: /admin/login');
         }
 
@@ -81,7 +86,7 @@ class UserController
 
     public static function update()
     {
-        if (!isset($_SESSION['admin'])){
+        if (!isset($_SESSION['admin']) || !isset($_SESSION['user'])){
             header('Location: /admin/login');
         }
 
@@ -142,6 +147,34 @@ class UserController
         if ($user >= 0 ){
             header('Location: /users');
         }
+    }
+
+    public static function login()
+    {
+        require_once ('app/Views/user/login.php');
+    }
+
+    public static function loginPost()
+    {
+        $data = $_POST;
+        $user = User::findByEmail($data['email']);
+        if ($user){
+            if (password_verify($data['password'], $user->password)){
+                $_SESSION['user'] = $user;
+                header('Location: /');
+            }
+        }
+    }
+
+    public static function logout()
+    {
+        session_destroy();
+        header('Location: /');
+    }
+
+    public static function register()
+    {
+        require_once ('app/Views/user/register.php');
     }
 
 
