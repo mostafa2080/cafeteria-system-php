@@ -9,3 +9,11 @@
 
 
 
+    // define('DB_HOST', 'nader-mo.tech');
+    // define('DB_USER', 'php-sasa');
+    // define('DB_PASS', 'Aa123456');
+    // define('DB_NAME', 'php-sasa');
+    // define('DB_PORT', '3306');
+
+
+

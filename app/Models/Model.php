@@ -11,7 +11,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-class Model
+abstract class Model
 {
     protected static $db = null;
     protected static $table = '';
@@ -54,34 +54,9 @@ class Model
     }
 
     // should be implemented in child class
-    public static function create($data)
-    {
-        static::pdo();
-        $query = "INSERT INTO " . static::$table ."(name,email,password)". " VALUES (:name, :email, :password)";
-        $st = static::$db->prepare($query);
-        $st->execute([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-        ]);
-        return $st->rowCount();
-
-    }
-
+    abstract public static function create($data);
     // should be implemented in child class
-    public static function update($data)
-    {
-        static::pdo();
-        $query = "UPDATE " . static::$table . " SET name=:name, email=:email, password=:password WHERE id=:id";
-        $st = static::$db->prepare($query);
-        $st->execute([
-            'id' => $data['id'],
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-        ]);
-        return $st->rowCount();
-    }
+    abstract public static function update($data);
 
     public static function delete($id)
     {
